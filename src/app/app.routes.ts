@@ -3,7 +3,7 @@ import { JokesComponent } from './jokes/jokes.component';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'random',
         component:JokesComponent
     }
 ];

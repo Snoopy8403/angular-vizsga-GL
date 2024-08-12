@@ -18,9 +18,8 @@ export class JokesComponent {
   ) {}
 
   ngOnInit(): void {
-    this.jokesService.getJokes().subscribe((jokes) => {
+    this.jokesService.getRandomJoke().subscribe((jokes) => {
     this.jokes = jokes;
-    console.log(this.jokes);
     });
   }
 }
