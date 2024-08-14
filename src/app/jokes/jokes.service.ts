@@ -8,11 +8,9 @@ import { Observable } from 'rxjs';
 })
 
 export class JokesService {
-  private baseUrl = 'https://Humor-API.proxy-production.allthingsdev.co';
+  private baseUrl = 'https://api.humorapi.com';
   private readonly jokeHeaders = new HttpHeaders() 
-  .set("x-apihub-key", "Tn7kov6teptc5tETGyMgHuXupqq8k9AKHiHjAwPJE-w1cuv04-")
-  .set("x-apihub-host", "Humor-API.allthingsdev.co")
-  .set("x-apihub-endpoint", "b2757a78-0430-4858-864b-f80314fb6283");
+  .set("api-key", "86c2e0ca94b14c709d529443211dc2c1");
   
   constructor(
     private readonly http: HttpClient

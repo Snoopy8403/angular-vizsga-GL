@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { JokesComponent } from './jokes/jokes.component';
-import { HttpClient } from '@angular/common/http';
+import { MenuComponent } from './menu/menu.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JokesComponent],
+  imports: [RouterOutlet, MenuComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

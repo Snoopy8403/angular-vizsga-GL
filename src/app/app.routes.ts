@@ -1,9 +1,15 @@
 import { Routes } from '@angular/router';
-import { JokesComponent } from './jokes/jokes.component';
+import { CasesComponent } from './covid/cases/cases.component';
+import { VaccinesComponent } from './covid/vaccines/vaccines.component';
 
 export const routes: Routes = [
     {
-        path: 'random',
-        component:JokesComponent
+        path: 'cases',
+        component: CasesComponent
+    }
+    ,
+    {
+        path: 'vaccines',
+        component: VaccinesComponent
     }
 ];
