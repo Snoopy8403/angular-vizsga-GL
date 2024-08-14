@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,5 +12,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
+  constructor(
+    protected readonly authService: AuthService
+  ){}
 
-}
+  logout() {
+    this.authService.logout().subscribe();
+  }}
