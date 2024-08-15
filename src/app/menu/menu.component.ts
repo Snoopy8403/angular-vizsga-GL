@@ -19,4 +19,5 @@ export class MenuComponent {
 
   logout() {
     this.authService.logout().subscribe();
-  }}
+  }
+}

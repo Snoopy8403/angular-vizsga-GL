@@ -3,22 +3,23 @@ import { Injectable } from '@angular/core';
 import { Cases } from '../models/cases.model';
 import { Observable } from 'rxjs';
 import { Vaccines } from '../models/vaccines.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CovidService {
-  private baseUrl = 'https://europe-central2-webuni-js-covid-exam.cloudfunctions.net';
+  private readonly BASE_URL = `${environment.covidBaseUrl}`;
 
   constructor(
     private readonly http: HttpClient
   ) { }
 
-  getCases(): Observable<Cases> {
-    return this.http.get<Cases>(`${this.baseUrl}/cases?country=hungary`);
+  getCases(selectedCountry: string): Observable<Cases> {
+    return this.http.get<Cases>(`${this.BASE_URL}/cases?country=${selectedCountry}`);
   }
 
-  getVaccines(): Observable<Vaccines> {
-    return this.http.get<Vaccines>(`${this.baseUrl}/vaccines?country=france`);
+  getVaccines(selectedCountry: string): Observable<Vaccines> {
+    return this.http.get<Vaccines>(`${this.BASE_URL}/vaccines?country=${selectedCountry}`);
   }
 }

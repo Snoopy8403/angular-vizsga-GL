@@ -4,8 +4,8 @@
     </div>
     @if (authService.isLoggedIn) {
       <div class="menu-buttons">
-        <button class="menu-button" mat-raised-button routerLink="/cases">Megbetegedések</button>
-        <button class="menu-button" mat-raised-button routerLink="/vaccines">Oltások</button>
+        <button class="menu-button" mat-raised-button routerLink="/covid/cases">Megbetegedések</button>
+        <button class="menu-button" mat-raised-button routerLink="/covid/vaccines">Oltások</button>
       </div>
       <div>{{authService.currentUser()?.username}}</div>
       <div>

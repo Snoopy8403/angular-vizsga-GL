@@ -1,12 +1,18 @@
-.example-button-row {
-    display: table-cell;
-    max-width: 600px;
-  }
-  .example-button-row .mat-mdc-button-base {
-    margin: 8px 8px 8px 0;
-  }
+mat-card {
+  width: 40%;
+  margin: 24px auto;
+  padding: 32px;
+  
+    mat-card-header{
+        margin-bottom: 30px;
+    }
+    mat-form-field {
+        width: 100%;
+    }
 
-.search {
-    display: flex;
-    justify-content: space-evenly;
+  .button-group {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+  }
 }
