@@ -1,4 +1,13 @@
 mat-toolbar {
     display: flex;
     justify-content: space-between;
+    background-color: rgba($color: #575757, $alpha: 0.3);
 }
+.menu-buttons {
+    width: 80%;
+}
+
+.menu-button {
+    margin: 0 10px 0 10px;
+}
+

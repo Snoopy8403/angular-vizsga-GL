@@ -1,0 +1,27 @@
+mat-card {
+    width: 40%;
+    margin: 24px auto;
+    padding: 32px;
+    
+    mat-card-header{
+        margin-bottom: 30px;
+    }
+
+    .register-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+
+        mat-form-field {
+            width: 80%;
+        }
+    }
+
+    .button-group {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+}

@@ -3,10 +3,11 @@
           <span>Covid adatok</span>
     </div>
     @if (authService.isLoggedIn) {
-      <div>
-        <button mat-button>Megbetegedések</button>
-        <button mat-button>Oltások</button>
+      <div class="menu-buttons">
+        <button class="menu-button" mat-raised-button routerLink="/cases">Megbetegedések</button>
+        <button class="menu-button" mat-raised-button routerLink="/vaccines">Oltások</button>
       </div>
+      <div>{{authService.currentUser()?.username}}</div>
       <div>
         <button mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon></button>
       </div>

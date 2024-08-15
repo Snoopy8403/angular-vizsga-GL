@@ -1,10 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { User } from './models/user.model';
+import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { CreateUser } from '../models/create-user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,10 @@ export class AuthService {
     return this.http.get<{isLoggedIn: boolean}>(`${this.BASE_URL}/sessionInfo`).pipe(
       map(res => res.isLoggedIn)
     )
+  }
+
+  registration(createUser: CreateUser) {
+    return this.http.post(`${this.BASE_URL}/registration`, createUser);
   }
 
   private storeUser(user: User) {

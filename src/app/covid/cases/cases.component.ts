@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cases } from './cases.model';
+import { Cases } from '../../models/cases.model';
 import { CovidService } from '../covid.service';
 import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select';
