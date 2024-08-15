@@ -4,8 +4,7 @@
   <mat-card-content>
       <mat-form-field appearance="outline">
         <div class="countrySelectForm">
-          <mat-label>Ország</mat-label>
-          <mat-select name="selectedCountry" required [(ngModel)]="selectedCountry">
+          <mat-select name="selectedCountry" [(ngModel)]="selectedCountry" required>
             @for (option of countryOptions; track option) {
               <mat-option [value]="option">{{option}}</mat-option>
             }      

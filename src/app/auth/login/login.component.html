@@ -12,14 +12,14 @@
     
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input type="text" matInput required [(ngModel)]="password">
+                <input type="password" matInput required [(ngModel)]="password">
             </mat-form-field>
         </div>
     </mat-card-content>
     
     <mat-card-actions>
         <div class="button-group">
-            <button mat-raised-button color="primary" routerLink="/registration">Regisztráció</button>        
+            <button mat-raised-button color="warn" routerLink="/registration">Regisztráció</button>        
             <button mat-raised-button color="primary" (click)="login()">Bejelentkezés</button>
         </div>
     </mat-card-actions>
