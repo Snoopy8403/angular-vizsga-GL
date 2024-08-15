@@ -2,13 +2,13 @@
     <div>
           <span>Covid adatok</span>
     </div>
-    <div>
-        <button>Megbetegedések</button>
-        <button>Oltások</button>
-    </div>
-    <div>
-      @if (authService.isLoggedIn) {
+    @if (authService.isLoggedIn) {
+      <div>
+        <button mat-button>Megbetegedések</button>
+        <button mat-button>Oltások</button>
+      </div>
+      <div>
         <button mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon></button>
-      }
-    </div>
+      </div>
+    }
   </mat-toolbar>
