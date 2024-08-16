@@ -20,4 +20,8 @@ export class MenuComponent {
   logout() {
     this.authService.logout().subscribe();
   }
+
+  counterErase(){
+    this.authService.counterErase();
+  }
 }

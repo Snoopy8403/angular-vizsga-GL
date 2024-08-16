@@ -1,14 +1,15 @@
 <mat-toolbar>
-    <div>
-          <span>Covid adatok</span>
+    <div class="logo">
+      <img style="height: 50px;" src="../img/covid19-logo.png" alt="">
     </div>
     @if (authService.isLoggedIn) {
       <div class="menu-buttons">
         <button class="menu-button" mat-raised-button routerLink="/covid/cases">Megbetegedések</button>
         <button class="menu-button" mat-raised-button routerLink="/covid/vaccines">Oltások</button>
       </div>
-      <div>{{authService.currentUser()?.username}}</div>
-      <div>
+      <div class="user-section">
+        <button class="menu-button" color="warn" mat-raised-button (click)="counterErase()">Letöltési számláló törlése</button>
+        {{authService.currentUser()?.username}}
         <button mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon></button>
       </div>
     }

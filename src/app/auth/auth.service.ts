@@ -53,6 +53,13 @@ export class AuthService {
     )
   }
 
+  //beleírtam a könnyebb teszteléshez
+  counterErase() {
+    let userData = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      userData.visitCounter = 0;
+      localStorage.setItem('currentUser', JSON.stringify(userData));
+  }
+
   logout() {
     return this.http.post(`${this.BASE_URL}/logout`, null).pipe(
       tap(() => {

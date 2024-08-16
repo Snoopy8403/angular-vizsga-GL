@@ -4,7 +4,6 @@ import { Cases } from '../models/cases.model';
 import { Observable } from 'rxjs';
 import { Vaccines } from '../models/vaccines.model';
 import { environment } from '../../environments/environment';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +12,12 @@ export class CovidService {
   private readonly BASE_URL = `${environment.covidBaseUrl}`;
 
   constructor(
-    private readonly http: HttpClient,
-    private readonly matSnackBar: MatSnackBar
+    private readonly http: HttpClient
   ) { }
 
   getCases(selectedCountry: string): Observable<Cases> {
-    if (this.visitCounterIncrase()) {
+
       return this.http.get<Cases>(`${this.BASE_URL}/cases?country=${selectedCountry}`);      
-    }
-    else {
-      this.matSnackBar.open('Elérte a maximális letöltési számot (3)!');
-      return this.http.get<Cases>(`${this.BASE_URL}/cases?country=${selectedCountry}`);
-    }
   }
 
   getVaccines(selectedCountry: string): Observable<Vaccines> {
