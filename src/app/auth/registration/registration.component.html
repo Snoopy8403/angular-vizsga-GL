@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header>Regisztráció</mat-card-header>
     
-    <form #form (ngSubmit)="registration()">
+    <form #form="ngForm" (ngSubmit)="registration()">
         <mat-card-content>
             <div class="register-form">
                 <mat-form-field appearance="outline">
@@ -14,19 +14,23 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Jelszó</mat-label>
-                    <input matInput name="password" type="password" [(ngModel)]="password" required>
+                    <input matInput name="password" type="password" #password="ngModel" [(ngModel)]="password" required>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Jelszó ismét</mat-label> 
-                    <input matInput name="passwordCheck" type="password"  [(ngModel)]="passwordCheck" required>
+                    <input matInput name="passwordCheck" type="password" #passwordCheck="ngModel"  [(ngModel)]="passwordCheck" required>
+                    @if (password !== passwordCheck) {
+                        <mat-error>A két jelszó mező nem egyezik!</mat-error>
+                    }
+
                 </mat-form-field>
             </div>
         </mat-card-content>
 
         <mat-card-actions>
             <div class="button-group">
-                <button mat-raised-button color="warn" routerLink="/login">Belépés</button>
-                <button mat-raised-button color="primary" type="submit">Regisztráció</button>
+                <button mat-raised-button color="warn" routerLink="/login" >Vissza a Belépéshez</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Regisztráció</button>
             </div>
         </mat-card-actions>
      </form>

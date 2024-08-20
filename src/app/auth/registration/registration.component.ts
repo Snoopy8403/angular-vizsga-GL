@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, DestroyRef, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
 import { catchError, finalize, tap } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-registration',
@@ -25,7 +26,8 @@ export class RegistrationComponent {
   constructor(
     private readonly authService: AuthService,
     private readonly routerService: Router,
-    private readonly matSnackBar: MatSnackBar 
+    private readonly matSnackBar: MatSnackBar,
+    private readonly destroyRef: DestroyRef 
   ) {}
 
   registration() {
@@ -40,9 +42,10 @@ export class RegistrationComponent {
         ).pipe(
           tap(() => this.routerService.navigate(['/login'])),
           catchError((e) => {
-            this.matSnackBar.open('Registráció hiba');
+            this.matSnackBar.open('Registráció hiba', undefined, {duration: 3000});
             return e;
-          })
+          }),
+          takeUntilDestroyed(this.destroyRef)
       ).subscribe();   
     }
   }

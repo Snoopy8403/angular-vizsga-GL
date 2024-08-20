@@ -24,4 +24,8 @@ export class MenuComponent {
   counterErase(){
     this.authService.counterErase();
   }
+
+  getDownloadCounter(){
+    this.authService.getDowloadedCounter();
+  }
 }

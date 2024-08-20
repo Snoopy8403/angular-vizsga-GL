@@ -47,7 +47,7 @@ export class CasesComponent {
     'Romania'
   ];
 
-  displayedColumns: string[] = ['confirmed', 'recovered', 'deaths', 'country'];
+  displayedColumns: string[] = ['confirmed', 'recovered', 'deaths', 'country', 'population', 'sq_km_area', 'continent', 'capital_city', 'updated'];
   
   constructor(
     private readonly casesService: CovidService,
@@ -55,27 +55,26 @@ export class CasesComponent {
   ) {}
 
   getCasesData(){
-    console.log(this.selectedCountry());
-    this.downloadedCountry.push(this.selectedCountry());
     this.casesService.getCases(this.selectedCountry()).subscribe((cases) => {
       this.cases = cases;
       this.dataSource.push(cases);
       this.table.renderRows();
-      console.log('Gombra: ' + JSON.stringify(this.dataSource));  
+      this.casesService.incraseVisitCounter();
+      this.downloadedCountry.push(this.selectedCountry());
     });
   }
 
   getData(){
-    if (this.casesService.visitCounterIncrase()) {
+    if (this.casesService.checkVisitCounter()) {
       if (!this.downloadedCountry.includes(this.selectedCountry())) {
        this.getCasesData();
       }
       else {
-        this.matSnackBar.open('Ezzel a várossal már letöltésre került az adat!');        
+        this.matSnackBar.open('Ezzel a várossal már letöltésre került az adat!', undefined, {duration: 3000});        
       }
     }
     else {
-      this.matSnackBar.open('Elérte a maximális letöltési számot!');
+      this.matSnackBar.open('Elérte a maximális letöltési számot!', undefined, {duration: 3000});
     }
   }
 

@@ -80,6 +80,11 @@ export class AuthService {
     return this.http.post(`${this.BASE_URL}/registration`, createUser);
   }
 
+  getDowloadedCounter() {
+    let userData = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    return userData.visitCounter;
+  }
+
   private storeUser(user: User) {
     localStorage.setItem(this.CURRENT_USER_KEY, JSON.stringify(user));
   }

@@ -1,8 +1,7 @@
 <div>
-    <h2>Oltások</h2>
-</div>
-
-<mat-card>
+  <h2>Oltások</h2>
+  </div>
+  <mat-card>
     <mat-card-header>Kérem válasszon egy országot:</mat-card-header>
     
     <mat-card-content>
@@ -19,7 +18,52 @@
     
     <mat-card-actions>
       <div class="button-group">
+        <button mat-raised-button (click)="eraseCountryList()" color="warn">Lekért országok törlése</button>
         <button mat-raised-button (click)="getData()">Adatok lekérdezése</button>
       </div> 
     </mat-card-actions>
   </mat-card>
+  <div class="table-class">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #table_vaccines>
+    <ng-container matColumnDef="administered">
+      <th mat-header-cell *matHeaderCellDef> Beadott </th>
+      <td mat-cell *matCellDef="let element"> {{element.administered}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="people_vaccinated">
+      <th mat-header-cell *matHeaderCellDef> Oltottak száma </th>
+      <td mat-cell *matCellDef="let element"> {{element.people_vaccinated}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef> Ország </th>
+      <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="population">
+      <th mat-header-cell *matHeaderCellDef> Népesség </th>
+      <td mat-cell *matCellDef="let element"> {{element.population}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sq_km_area">
+      <th mat-header-cell *matHeaderCellDef> Terület </th>
+      <td mat-cell *matCellDef="let element"> {{element.sq_km_area}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="continent">
+      <th mat-header-cell *matHeaderCellDef> Kontinens </th>
+      <td mat-cell *matCellDef="let element"> {{element.continent}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="capital_city">
+      <th mat-header-cell *matHeaderCellDef> Főváros </th>
+      <td mat-cell *matCellDef="let element"> {{element.capital_city}} </td>
+    </ng-container>
+    <ng-container matColumnDef="updated">
+      <th mat-header-cell *matHeaderCellDef> Frissítve </th>
+      <td mat-cell *matCellDef="let element"> {{element.updated}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  </div>
