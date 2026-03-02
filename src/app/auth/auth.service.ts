@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { CreateUser } from '../models/create-user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private readonly BASE_URL = `${environment.baseUrl}/auth`;
@@ -22,18 +22,20 @@ export class AuthService {
   ) {
     const storedUser = localStorage.getItem(this.CURRENT_USER_KEY);
 
-    if(storedUser) {
+    if (storedUser) {
       this._currentUser.set(JSON.parse(storedUser));
     }
 
-    this.sessionInfo().pipe(
-      filter(isLoggedIn => !isLoggedIn),
-      tap(() => {
-        this.clearStoredUser();
-        this._currentUser.set(undefined);
-      }),
-      takeUntilDestroyed()
-    ).subscribe();
+    this.sessionInfo()
+      .pipe(
+        filter((isLoggedIn) => !isLoggedIn),
+        tap(() => {
+          this.clearStoredUser();
+          this._currentUser.set(undefined);
+        }),
+        takeUntilDestroyed()
+      )
+      .subscribe();
   }
 
   get currentUser() {
@@ -45,35 +47,38 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<User>(`${this.BASE_URL}/login`, {email, password}).pipe(
-      tap(user => {
-        this._currentUser.set(user);
-        this.storeUser(user);
-      })
-    )
+    return this.http
+      .post<User>(`${this.BASE_URL}/login`, { email, password })
+      .pipe(
+        tap((user) => {
+          this._currentUser.set(user);
+          this.storeUser(user);
+        })
+      );
   }
 
   //beleírtam a könnyebb teszteléshez
   counterErase() {
     let userData = JSON.parse(localStorage.getItem('currentUser') || '{}');
-      userData.visitCounter = 0;
-      localStorage.setItem('currentUser', JSON.stringify(userData));
+    userData.visitCounter = 0;
+    localStorage.setItem('currentUser', JSON.stringify(userData));
   }
 
   logout() {
     return this.http.post(`${this.BASE_URL}/logout`, null).pipe(
       tap(() => {
+        console.log('megnyomtad');
         this.clearStoredUser();
         this._currentUser.set(undefined);
         this.router.navigate(['/login']);
       })
-    )
+    );
   }
 
   sessionInfo() {
-    return this.http.get<{isLoggedIn: boolean}>(`${this.BASE_URL}/sessionInfo`).pipe(
-      map(res => res.isLoggedIn)
-    )
+    return this.http
+      .get<{ isLoggedIn: boolean }>(`${this.BASE_URL}/sessionInfo`)
+      .pipe(map((res) => res.isLoggedIn));
   }
 
   registration(createUser: CreateUser) {
